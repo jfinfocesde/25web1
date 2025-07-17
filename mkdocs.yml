@@ -1,5 +1,5 @@
-site_name: Backen I
-site_url: https://jfinfocesde.github.io/25b1/
+site_name: WEB I
+site_url: https://jfinfocesde.github.io/web1/
 site_author: jhonfvg
 
 theme:
@@ -48,6 +48,11 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.blocks.caption
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra:
   generator: false  

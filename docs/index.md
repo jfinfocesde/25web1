@@ -1,74 +1,24 @@
-## 🚀 **Bienvenidos al Submódulo Backend 1**
-¡Bienvenidos a este emocionante viaje hacia el mundo de la programación orientada a objetos (POO), el control de versiones y las herramientas modernas para el desarrollo de software! Este curso está diseñado para introducirte en conceptos fundamentales de POO, así como en tecnologías esenciales como **Java**, **Git/GitHub**, **JPA/Hibernate** y más, que son ampliamente utilizadas en la industria moderna. Ya seas un principiante o alguien con experiencia previa en tecnología, este curso te brindará las habilidades prácticas necesarias para destacar en el mundo del desarrollo de software.
+# Bienvenida al Submódulo WEB I
 
-### **¿Qué aprenderás en este curso?**
-Este curso abarca una amplia gama de temas fundamentales y avanzados, organizados en módulos específicos:
+¡Bienvenidos al Submódulo WEB I! Este curso es la puerta de entrada al desarrollo web, donde sentaremos las bases del **JavaScript** moderno, un lenguaje esencial para crear aplicaciones web dinámicas e interactivas. A través de este submódulo, aprenderás desde los fundamentos hasta técnicas avanzadas para manipular datos, interactuar con el DOM y consumir APIs, todo mientras desarrollas un **Proyecto Integrador** que consolidará tus habilidades.
 
-#### **1. Pacto Pedagógico y Retos Empresariales**
-- **Pacto Pedagógico**: Comprenderás las bases del compromiso académico y los valores que guiarán tu aprendizaje.
-- **Retos empresariales**: Identificarás los desafíos reales del sector empresarial que resolverás en el Proyecto Integrador.
+## ¿Qué aprenderás?
+- **Fundamentos de JavaScript**: Tipos de datos (`Number`, `String`), variables (`let`, `var`, `const`), operadores (aritméticos, lógicos, unarios) y uso de la consola.
+- **Estructuras de control**: Condicionales (`if`, `else`, `else if`, `switch`) y ciclos (`for`, `while`, `do-while`).
+- **Funciones**: Regulares, flecha, anónimas, con parámetros y retorno.
+- **Estructuras de datos**: Arreglos, objetos, métodos avanzados (`push`, `pop`, `shift`, `filter`) y desestructuración.
+- **Manipulación del DOM**: Selección y modificación de elementos HTML desde JavaScript.
+- **JavaScript asíncrono**: Event Loop, callbacks, promesas, `async/await` y consumo de APIs con `fetch`.
+- **Proyecto Integrador**: Aplicación práctica de los conceptos en un proyecto funcional, con seguimientos y sustentación.
 
-#### **2. Introducción a la Programación Orientada a Objetos (POO)**
-- **Generalidades y definiciones**: Aprenderás qué es la POO, qué es un objeto, y cómo aplicar la abstracción mediante clases.
-- **Modularidad**: Entenderás cómo dividir problemas complejos en componentes más pequeños y manejables.
-- **Generalidades de Java**: Descubrirás qué es Java, su relevancia en el desarrollo de software, y cómo configurar tu entorno de desarrollo con el **Java Development Kit (JDK)**.
+## Estructura del curso
+El curso se divide en tres momentos clave:
+1. **Primer Momento**: Fundamentos de JavaScript, funciones y estructuras de datos. Primer seguimiento al Proyecto Integrador.
+2. **Segundo Momento**: Manipulación del DOM y aplicaciones integradas. Segundo seguimiento al Proyecto Integrador.
+3. **Tercer Momento**: JavaScript asíncrono, consumo de APIs y sustentación final del proyecto.
 
-#### **3. Atributos de una Clase**
-- **Datos primitivos y clases envolventes**: Explorarás los tipos de datos básicos y sus equivalentes en clases envolventes.
-- **Casteo y parseo de datos**: Aprenderás a convertir entre diferentes tipos de datos para garantizar la integridad de la información.
+## ¿Qué necesitas?
+- Conocimientos básicos de HTML y CSS (recomendable).
+- Ganas de aprender y experimentar con código.
 
-#### **4. Métodos Especiales de una Clase**
-- **Constructores**: Dominarás la creación de constructores vacíos y con parámetros.
-- **Encapsulamiento**: Aprenderás a proteger tus datos utilizando métodos de acceso (**GETTERS y SETTERS**).
-- **Control de versiones**: Utilizarás **Git/GitHub** para versionar tu código y colaborar en proyectos.
-
-#### **5. Métodos Generales de una Clase**
-- **Lógica de negocio**: Construirás la lógica central de tus aplicaciones.
-- **Uso del operador `this`**: Aprenderás a diferenciar entre variables locales y globales dentro de una clase.
-- **Sobrecarga de métodos**: Implementarás múltiples métodos con el mismo nombre pero diferentes parámetros.
-- **Manejo de excepciones**: Garantizarás que tus aplicaciones manejen errores de manera eficiente.
-
-#### **6. Herencia en POO**
-- **Concepto de herencia**: Aprenderás a reutilizar código mediante la relación entre clases base y derivadas.
-- **Palabra reservada `super`**: Llamarás a métodos y constructores de la clase padre.
-- **Herencia simple y múltiple**: Entenderás las diferencias y casos de uso.
-
-#### **7. Polimorfismo en POO**
-- **Concepto de polimorfismo**: Aprenderás cómo una misma acción puede comportarse de manera diferente según el contexto.
-- **Relación entre clases base y derivadas**: Implementarás polimorfismo en tus proyectos.
-
-#### **8. Clases Abstractas e Interfaces**
-- **Clases abstractas**: Crearás clases que no pueden ser instanciadas directamente.
-- **Métodos abstractos**: Definirás métodos que deben ser implementados por clases derivadas.
-- **Interfaces**: Aprenderás a declarar e implementar interfaces utilizando la palabra clave `implements`.
-
-#### **9. Gestores de Dependencias en Java**
-- **Maven y Gradle**: Configurarás y gestionarás dependencias en tus proyectos.
-- **Integración con IDEs**: Aprenderás a trabajar con gestores de dependencias en entornos de desarrollo integrados.
-
-#### **10. JPA + Hibernate: Conexión con Bases de Datos**
-- **Configuración de conexión**: Establecerás conexiones con bases de datos utilizando **JPA** y **Hibernate**.
-- **Mapeo de entidades**: Relacionarás tus clases Java con tablas de bases de datos.
-- **Operaciones CRUD**: Implementarás operaciones de persistencia para crear, leer, actualizar y eliminar datos.
-
----
-
-### **Metodología del Curso**
-
-El curso combina teoría y práctica para garantizar que aprendas de manera efectiva:
-
-- **Clases teóricas**: Explicaciones claras y concisas sobre los conceptos fundamentales.
-- **Laboratorios prácticos**: Ejercicios guiados para aplicar lo aprendido en entornos controlados.
-- **Proyectos integradores**: Desarrollo de soluciones completas que integran POO, Git/GitHub, JPA/Hibernate y otras herramientas.
-
----
-
-### **Compromiso del CESDE**
-En el **CESDE**, estamos comprometidos con tu éxito. Este curso no solo busca enseñarte herramientas tecnológicas, sino también inspirarte a ser un agente de cambio en el mundo digital. Nuestro objetivo es que al finalizar este programa, tengas la confianza y las habilidades necesarias para enfrentar cualquier desafío tecnológico.
-
----
-
-### **¡Comencemos este viaje juntos!**
-Estamos emocionados de acompañarte en este proceso de aprendizaje. Con dedicación y esfuerzo, pronto estarás creando soluciones innovadoras, desarrollando aplicaciones robustas y colaborando en proyectos tecnológicos de alto impacto.
-
-¡Bienvenido al futuro de la tecnología!
+¡Prepárate para dominar JavaScript y dar tus primeros pasos en el desarrollo web! Este submódulo te proporcionará las herramientas para construir aplicaciones interactivas y te preparará para el siguiente nivel en el Módulo WEB II. ¡Empecemos!
