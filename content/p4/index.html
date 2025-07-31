@@ -1,0 +1,1828 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="jhonfvg">
+      
+      
+        <link rel="canonical" href="https://jfinfocesde.github.io/web1/content/p4/">
+      
+      
+        <link rel="prev" href="../p3/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.3">
+    
+    
+      
+        <title>Semana 4 - Funciones en JavaScript - WEB I</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d7758b05.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#semana-4-funciones-en-javascript" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="WEB I" class="md-header__button md-logo" aria-label="WEB I" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215m-6.56 0a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WEB I
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Semana 4 - Funciones en JavaScript
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../p1/" class="md-tabs__link">
+          
+  
+    
+  
+  Contenido
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="WEB I" class="md-nav__button md-logo" aria-label="WEB I" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215m-6.56 0a.75.75 0 0 1 1.042.018.75.75 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg>
+
+    </a>
+    WEB I
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Contenido
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Contenido
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Semana 1 - Pacto pedagógico
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Semana 2 - Condicionales en JavaScript
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../p3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Semana 3: Ciclos en JavaScript
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Semana 4 - Funciones en JavaScript
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Semana 4 - Funciones en JavaScript
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-una-funcion-en-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 ¿Qué es una función en JavaScript?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formas-de-declarar-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Formas de declarar funciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Formas de declarar funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-declaracion-de-funcion-function-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Declaración de función (Function Declaration)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-expresion-de-funcion-function-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Expresión de función (Function Expression)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-funciones-flecha-arrow-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Funciones flecha (Arrow Functions)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-funciones-anonimas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Funciones anónimas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-funciones-inmediatamente-invocadas-iife" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Funciones inmediatamente invocadas (IIFE)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametros-y-argumentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Parámetros y argumentos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Parámetros y argumentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros por defecto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametro-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetro rest (...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-nombrados-con-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros nombrados con objetos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valor-de-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      📤 Valor de retorno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ambito-y-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Ámbito y closure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Ámbito y closure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ambito-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ámbito (Scope)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funciones-como-objetos-de-primera-clase" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Funciones como objetos de primera clase
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-avanzadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 Características avanzadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Características avanzadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funciones-de-orden-superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones de orden superior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-de-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos de funciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funciones-recursivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones recursivas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛑 Buenas prácticas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividad-20-ejercicios-con-funciones-en-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Actividad: 20 Ejercicios con Funciones en JavaScript
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-para-hacer-fork-del-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Instrucciones para hacer fork del repositorio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-para-la-actividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Instrucciones para la actividad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Ejercicios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-calcular-el-cuadrado-de-un-numero" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Calcular el cuadrado de un número
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-saludar-con-nombre-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Saludar con nombre por defecto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sumar-elementos-de-un-arreglo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sumar elementos de un arreglo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-ejecutar-un-mensaje-instantaneamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Ejecutar un mensaje instantáneamente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-contar-vocales-en-una-cadena" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Contar vocales en una cadena
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-filtrar-numeros-mayores-a-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Filtrar números mayores a 10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-convertir-a-mayusculas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Convertir a mayúsculas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-temporizador-con-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Temporizador con mensaje
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-crear-un-contador-privado" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Crear un contador privado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-calcular-factorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Calcular factorial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-verificar-si-un-numero-es-par" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Verificar si un número es par
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-multiplicar-elementos-de-un-arreglo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Multiplicar elementos de un arreglo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-reemplazar-espacios-por-guiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Reemplazar espacios por guiones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-generar-un-id-unico" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Generar un ID único
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-invertir-una-cadena" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Invertir una cadena
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-sumar-argumentos-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Sumar argumentos variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-ejecutar-operacion-personalizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Ejecutar operación personalizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-validar-correo-electronico" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Validar correo electrónico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-retrasar-ejecucion-de-un-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Retrasar ejecución de un mensaje
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-calcular-promedio-de-un-arreglo" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Calcular promedio de un arreglo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-una-funcion-en-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      📌 ¿Qué es una función en JavaScript?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formas-de-declarar-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Formas de declarar funciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Formas de declarar funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-declaracion-de-funcion-function-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Declaración de función (Function Declaration)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-expresion-de-funcion-function-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Expresión de función (Function Expression)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-funciones-flecha-arrow-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Funciones flecha (Arrow Functions)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-funciones-anonimas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Funciones anónimas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-funciones-inmediatamente-invocadas-iife" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Funciones inmediatamente invocadas (IIFE)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametros-y-argumentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Parámetros y argumentos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Parámetros y argumentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros por defecto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametro-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetro rest (...)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parametros-nombrados-con-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parámetros nombrados con objetos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valor-de-retorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      📤 Valor de retorno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ambito-y-closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Ámbito y closure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Ámbito y closure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ambito-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ámbito (Scope)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closure
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funciones-como-objetos-de-primera-clase" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Funciones como objetos de primera clase
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caracteristicas-avanzadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎨 Características avanzadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎨 Características avanzadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funciones-de-orden-superior" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones de orden superior
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos-de-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos de funciones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#funciones-recursivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funciones recursivas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛑 Buenas prácticas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actividad-20-ejercicios-con-funciones-en-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Actividad: 20 Ejercicios con Funciones en JavaScript
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-para-hacer-fork-del-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Instrucciones para hacer fork del repositorio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instrucciones-para-la-actividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Instrucciones para la actividad
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Ejercicios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Ejercicios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-calcular-el-cuadrado-de-un-numero" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Calcular el cuadrado de un número
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-saludar-con-nombre-por-defecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Saludar con nombre por defecto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-sumar-elementos-de-un-arreglo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sumar elementos de un arreglo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-ejecutar-un-mensaje-instantaneamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Ejecutar un mensaje instantáneamente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-contar-vocales-en-una-cadena" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Contar vocales en una cadena
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-filtrar-numeros-mayores-a-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Filtrar números mayores a 10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-convertir-a-mayusculas" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Convertir a mayúsculas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-temporizador-con-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Temporizador con mensaje
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-crear-un-contador-privado" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Crear un contador privado
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-calcular-factorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Calcular factorial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-verificar-si-un-numero-es-par" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Verificar si un número es par
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-multiplicar-elementos-de-un-arreglo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Multiplicar elementos de un arreglo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-reemplazar-espacios-por-guiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Reemplazar espacios por guiones
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-generar-un-id-unico" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Generar un ID único
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-invertir-una-cadena" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Invertir una cadena
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-sumar-argumentos-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. Sumar argumentos variables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-ejecutar-operacion-personalizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. Ejecutar operación personalizada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-validar-correo-electronico" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. Validar correo electrónico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-retrasar-ejecucion-de-un-mensaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. Retrasar ejecución de un mensaje
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-calcular-promedio-de-un-arreglo" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. Calcular promedio de un arreglo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="semana-4-funciones-en-javascript">Semana 4 - Funciones en JavaScript</h1>
+<div class="admonition info">
+<p class="admonition-title">Introducción</p>
+<p>Las <strong>funciones</strong> son uno de los pilares fundamentales de JavaScript, un lenguaje de programación dinámico y versátil. Las funciones permiten encapsular bloques de código reutilizables, facilitando la organización, modularidad y mantenimiento del código. En esta guía, exploraremos qué son las funciones, cómo se definen, cómo se utilizan y las características avanzadas que las hacen tan poderosas en JavaScript. 🚀</p>
+</div>
+<hr />
+<h2 id="que-es-una-funcion-en-javascript">📌 ¿Qué es una función en JavaScript?</h2>
+<p>Una <strong>función</strong> en JavaScript es un bloque de código diseñado para realizar una tarea específica que puede ser ejecutado cuando se le "llama" o invoca. Las funciones son objetos de primera clase, lo que significa que pueden ser asignadas a variables, pasadas como argumentos, retornadas desde otras funciones y más.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Las funciones no solo ejecutan código, sino que también pueden devolver valores y ser utilizadas para estructurar programas de manera modular.</p>
+</div>
+<hr />
+<h2 id="formas-de-declarar-funciones">🛠️ Formas de declarar funciones</h2>
+<p>Existen varias formas de definir funciones en JavaScript, cada una con sus características y casos de uso. A continuación, exploraremos las más comunes:</p>
+<h3 id="1-declaracion-de-funcion-function-declaration">1. <strong>Declaración de función</strong> (Function Declaration)</h3>
+<p>La forma más tradicional de definir una función es mediante una <strong>declaración de función</strong>. Estas funciones son <strong>hoisted</strong> (elevadas), lo que significa que pueden ser invocadas antes de su definición en el código.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`¡Hola, </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saludar</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// ¡Hola, Ana!</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El <strong>hoisting</strong> permite que las declaraciones de funciones sean accesibles en todo el ámbito donde se definen, incluso antes de que aparezcan en el código.</p>
+</div>
+<h3 id="2-expresion-de-funcion-function-expression">2. <strong>Expresión de función</strong> (Function Expression)</h3>
+<p>Una <strong>expresión de función</strong> asigna una función a una variable. A diferencia de las declaraciones, estas no son hoisted, por lo que deben definirse antes de usarse.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">despedirse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">nombre</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`¡Adiós, </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">despedirse</span><span class="p">(</span><span class="s2">&quot;Juan&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// ¡Adiós, Juan!</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Las expresiones de función son útiles cuando necesitas asignar funciones a variables o pasarlas como argumentos a otras funciones.</p>
+</div>
+<h3 id="3-funciones-flecha-arrow-functions">3. <strong>Funciones flecha</strong> (Arrow Functions)</h3>
+<p>Introducidas en <strong>ES6</strong>, las funciones flecha ofrecen una sintaxis más concisa y tienen un comportamiento especial con el contexto de <code>this</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">sumar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumar</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">));</span><span class="w"> </span><span class="c1">// 8</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Las funciones flecha <strong>no tienen su propio <code>this</code></strong>, lo que las hace ideales para callbacks, pero cuidado al usarlas en objetos donde el contexto de <code>this</code> es importante.</p>
+</div>
+<h3 id="4-funciones-anonimas">4. <strong>Funciones anónimas</strong></h3>
+<p>Las funciones anónimas no tienen un nombre y suelen usarse como argumentos en otras funciones o en expresiones.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;¡Han pasado 2 segundos!&quot;</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="5-funciones-inmediatamente-invocadas-iife">5. <strong>Funciones inmediatamente invocadas (IIFE)</strong></h3>
+<p>Una <strong>IIFE</strong> (Immediately Invoked Function Expression) es una función que se ejecuta inmediatamente después de definirse.</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;¡Me ejecuté al instante!&quot;</span><span class="p">);</span>
+<span class="p">})();</span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Las IIFE son útiles para crear un ámbito aislado y evitar contaminar el ámbito global.</p>
+</div>
+<hr />
+<h2 id="parametros-y-argumentos">🔍 Parámetros y argumentos</h2>
+<p>Las funciones pueden recibir <strong>parámetros</strong>, que son variables definidas en la declaración de la función, y <strong>argumentos</strong>, que son los valores que se pasan al invocar la función.</p>
+<h3 id="parametros-por-defecto"><strong>Parámetros por defecto</strong></h3>
+<p>Desde <strong>ES6</strong>, puedes asignar valores por defecto a los parámetros.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">(</span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Invitado&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`¡Hola, </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saludar</span><span class="p">());</span><span class="w"> </span><span class="c1">// ¡Hola, Invitado!</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">saludar</span><span class="p">(</span><span class="s2">&quot;Lucía&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// ¡Hola, Lucía!</span>
+</code></pre></div>
+<h3 id="parametro-rest"><strong>Parámetro rest (<code>...</code>)</strong></h3>
+<p>El operador <strong>rest</strong> permite pasar un número indefinido de argumentos como un arreglo.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">sumarTodo</span><span class="p">(...</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">total</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sumarTodo</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// 10</span>
+</code></pre></div>
+<h3 id="parametros-nombrados-con-objetos"><strong>Parámetros nombrados con objetos</strong></h3>
+<p>Puedes pasar un objeto como parámetro para manejar múltiples valores de forma más organizada.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">configurarUsuario</span><span class="p">({</span><span class="w"> </span><span class="nx">nombre</span><span class="p">,</span><span class="w"> </span><span class="nx">edad</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`Usuario: </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">, Edad: </span><span class="si">${</span><span class="nx">edad</span><span class="si">}</span><span class="sb">, Email: </span><span class="si">${</span><span class="nx">email</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">configurarUsuario</span><span class="p">({</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">edad</span><span class="o">:</span><span class="w"> </span><span class="mf">25</span><span class="p">,</span><span class="w"> </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ana@example.com&quot;</span><span class="w"> </span><span class="p">}));</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Los parámetros nombrados mejoran la legibilidad y flexibilidad al trabajar con múltiples argumentos.</p>
+</div>
+<hr />
+<h2 id="valor-de-retorno">📤 Valor de retorno</h2>
+<p>Las funciones pueden devolver un valor usando la palabra clave <code>return</code>. Si no se especifica, la función devuelve <code>undefined</code> por defecto.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">multiplicar</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">multiplicar</span><span class="p">(</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">));</span><span class="w"> </span><span class="c1">// 20</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Todo lo que se escriba después de <code>return</code> no se ejecutará, ya que la función termina su ejecución en ese punto.</p>
+</div>
+<hr />
+<h2 id="ambito-y-closure">🌐 Ámbito y closure</h2>
+<h3 id="ambito-scope"><strong>Ámbito (Scope)</strong></h3>
+<p>El <strong>ámbito</strong> determina dónde una variable es accesible. JavaScript tiene dos tipos principales de ámbito:</p>
+<ul>
+<li><strong>Ámbito global</strong>: Variables definidas fuera de cualquier función.</li>
+<li><strong>Ámbito local</strong>: Variables definidas dentro de una función.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nb">global</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soy global&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">miFuncion</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">local</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Soy local&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">global</span><span class="p">);</span><span class="w"> </span><span class="c1">// Accesible</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">local</span><span class="p">);</span><span class="w"> </span><span class="c1">// Accesible</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">global</span><span class="p">);</span><span class="w"> </span><span class="c1">// Accesible</span>
+<span class="c1">// console.log(local); // Error: local is not defined</span>
+</code></pre></div>
+<h3 id="closure"><strong>Closure</strong></h3>
+<p>Un <strong>closure</strong> ocurre cuando una función interna tiene acceso a las variables de su función externa, incluso después de que la función externa haya terminado de ejecutarse.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">crearContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">contador</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">contador1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">crearContador</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contador1</span><span class="p">());</span><span class="w"> </span><span class="c1">// 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contador1</span><span class="p">());</span><span class="w"> </span><span class="c1">// 1</span>
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Los closures son ideales para crear funciones con estado privado, como contadores o módulos.</p>
+</div>
+<hr />
+<h2 id="funciones-como-objetos-de-primera-clase">⚙️ Funciones como objetos de primera clase</h2>
+<p>En JavaScript, las funciones son <strong>objetos de primera clase</strong>, lo que significa que pueden:</p>
+<ul>
+<li>Ser asignadas a variables.</li>
+<li>Ser pasadas como argumentos.</li>
+<li>Ser devueltas por otras funciones.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">operacion</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">callback</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="p">;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">operacion</span><span class="p">(</span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">suma</span><span class="p">));</span><span class="w"> </span><span class="c1">// 8</span>
+</code></pre></div>
+<hr />
+<h2 id="caracteristicas-avanzadas">🎨 Características avanzadas</h2>
+<h3 id="funciones-de-orden-superior"><strong>Funciones de orden superior</strong></h3>
+<p>Una función de orden superior es aquella que recibe o devuelve otra función.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">filtrarPares</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">filtrarPares</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="mf">6</span><span class="p">]));</span><span class="w"> </span><span class="c1">// [2, 4, 6]</span>
+</code></pre></div>
+<h3 id="metodos-de-funciones"><strong>Métodos de funciones</strong></h3>
+<p>Las funciones tienen métodos integrados como <code>.call()</code>, <code>.apply()</code> y <code>.bind()</code> para manipular el contexto de <code>this</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">persona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">nombre</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Carlos&quot;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">saludar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hola, </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">saludar</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">persona</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hola, Carlos</span>
+</code></pre></div>
+<h3 id="funciones-recursivas"><strong>Funciones recursivas</strong></h3>
+<p>Una función recursiva se llama a sí misma para resolver un problema.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">factorial</span><span class="p">(</span><span class="nx">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">factorial</span><span class="p">(</span><span class="mf">5</span><span class="p">));</span><span class="w"> </span><span class="c1">// 120</span>
+</code></pre></div>
+<hr />
+<h2 id="buenas-practicas">🛑 Buenas prácticas</h2>
+<ol>
+<li><strong>Nombra tus funciones de manera clara</strong> para reflejar su propósito.</li>
+<li><strong>Evita funciones demasiado largas</strong>. Divide el código en funciones más pequeñas.</li>
+<li><strong>Usa parámetros por defecto</strong> para manejar casos no definidos.4</li>
+</ol>
+<hr />
+<h2 id="actividad-20-ejercicios-con-funciones-en-javascript">🎯 Actividad: 20 Ejercicios con Funciones en JavaScript</h2>
+<div class="admonition info">
+<p class="admonition-title">Introducción</p>
+<p>Esta actividad está diseñada para reforzar tu comprensión de las funciones en JavaScript. Cada enunciado te pide resolver un problema utilizando un tipo específico de función: <strong>declaración de función</strong>, <strong>expresión de función</strong>, <strong>función flecha</strong>, <strong>función anónima</strong>, <strong>IIFE</strong>, <strong>función recursiva</strong> o <strong>función de orden superior</strong>. Antes de comenzar, sigue las instrucciones para hacer un fork del repositorio donde resolverás la actividad. ¡Practica y domina las funciones! 🚀</p>
+</div>
+<hr />
+<h2 id="instrucciones-para-hacer-fork-del-repositorio">🛠️ Instrucciones para hacer fork del repositorio</h2>
+<p>Para trabajar en esta actividad, harás un <strong>fork</strong> del repositorio donde se encuentra el proyecto base. Sigue estos pasos:</p>
+<ol>
+<li><strong>Accede al repositorio</strong>:</li>
+<li>Ve al repositorio oficial en GitHub: 
+    <div class="highlight"><pre><span></span><code>https://github.com/jfinfocesde/act_web1_s4.git
+</code></pre></div></li>
+<li>
+<p>Asegúrate de tener una cuenta de GitHub activa.</p>
+</li>
+<li>
+<p><strong>Haz un fork</strong>:</p>
+</li>
+<li>En la esquina superior derecha del repositorio, haz clic en el botón <strong>Fork</strong>.</li>
+<li>
+<p>Esto creará una copia del repositorio en tu cuenta de GitHub.</p>
+</li>
+<li>
+<p><strong>Clona tu repositorio</strong>:</p>
+</li>
+<li>En tu cuenta de GitHub, abre el repositorio forkeado.</li>
+<li>Haz clic en el botón <strong>Code</strong> y copia la URL del repositorio (por ejemplo, <code>https://github.com/tu-usuario/act_web1_s4.git</code>).</li>
+<li>En tu terminal, ejecuta:
+     <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/tu-usuario/act_web1_s4.git
+</code></pre></div></li>
+<li>Navega al directorio clonado:
+     <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>nombre-repositorio
+</code></pre></div></li>
+</ol>
+<h2 id="instrucciones-para-la-actividad">📋 Instrucciones para la actividad</h2>
+<ul>
+<li>Resuelve cada ejercicio utilizando el tipo de función indicado.</li>
+<li>Escribe el código en JavaScript y prueba tus soluciones en una consola o entorno de desarrollo.</li>
+<li>Cada solución debe ser clara, eficiente y seguir las buenas prácticas mencionadas en la guía previa.</li>
+</ul>
+<hr />
+<h2 id="ejercicios">🛠️ Ejercicios</h2>
+<h3 id="1-calcular-el-cuadrado-de-un-numero">1. <strong>Calcular el cuadrado de un número</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que reciba un número y devuelva su cuadrado.</li>
+<li><strong>Tipo de función</strong>: Declaración de función</li>
+<li><strong>Ejemplo</strong>: <code>cuadrado(4)</code> → <code>16</code></li>
+</ul>
+<h3 id="2-saludar-con-nombre-por-defecto">2. <strong>Saludar con nombre por defecto</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que salude a una persona por su nombre. Si no se proporciona un nombre, usa "Invitado".</li>
+<li><strong>Tipo de función</strong>: Expresión de función</li>
+<li><strong>Ejemplo</strong>: <code>saludar()</code> → <code>¡Hola, Invitado!</code></li>
+</ul>
+<h3 id="3-sumar-elementos-de-un-arreglo">3. <strong>Sumar elementos de un arreglo</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que sume todos los números de un arreglo.</li>
+<li><strong>Tipo de función</strong>: Función flecha</li>
+<li><strong>Ejemplo</strong>: <code>sumarArreglo([1, 2, 3])</code> → <code>6</code></li>
+</ul>
+<h3 id="4-ejecutar-un-mensaje-instantaneamente">4. <strong>Ejecutar un mensaje instantáneamente</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que imprima "¡Bienvenido!" en la consola al definirse.</li>
+<li><strong>Tipo de función</strong>: IIFE</li>
+<li><strong>Ejemplo</strong>: Imprime automáticamente al ejecutarse.</li>
+</ul>
+<h3 id="5-contar-vocales-en-una-cadena">5. <strong>Contar vocales en una cadena</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que cuente las vocales (a, e, i, o, u) en una cadena.</li>
+<li><strong>Tipo de función</strong>: Función recursiva</li>
+<li><strong>Ejemplo</strong>: <code>contarVocales("hola")</code> → <code>2</code></li>
+</ul>
+<h3 id="6-filtrar-numeros-mayores-a-10">6. <strong>Filtrar números mayores a 10</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que reciba un arreglo y devuelva solo los números mayores a 10.</li>
+<li><strong>Tipo de función</strong>: Función de orden superior</li>
+<li><strong>Ejemplo</strong>: <code>filtrarMayores([5, 12, 8, 15])</code> → <code>[12, 15]</code></li>
+</ul>
+<h3 id="7-convertir-a-mayusculas">7. <strong>Convertir a mayúsculas</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que convierta una cadena a mayúsculas.</li>
+<li><strong>Tipo de función</strong>: Función flecha</li>
+<li><strong>Ejemplo</strong>: <code>aMayusculas("javascript")</code> → <code>JAVASCRIPT</code></li>
+</ul>
+<h3 id="8-temporizador-con-mensaje">8. <strong>Temporizador con mensaje</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que imprima un mensaje después de 3 segundos usando <code>setTimeout</code>.</li>
+<li><strong>Tipo de función</strong>: Función anónima</li>
+<li><strong>Ejemplo</strong>: Imprime "¡Tiempo terminado!" tras 3 segundos.</li>
+</ul>
+<h3 id="9-crear-un-contador-privado">9. <strong>Crear un contador privado</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que devuelva otra función para contar incrementos, manteniendo el contador privado.</li>
+<li><strong>Tipo de función</strong>: IIFE con closure</li>
+<li><strong>Ejemplo</strong>: <code>contador()</code> → <code>0</code>, <code>contador()</code> → <code>1</code></li>
+</ul>
+<h3 id="10-calcular-factorial">10. <strong>Calcular factorial</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que calcule el factorial de un número.</li>
+<li><strong>Tipo de función</strong>: Función recursiva</li>
+<li><strong>Ejemplo</strong>: <code>factorial(5)</code> → <code>120</code></li>
+</ul>
+<h3 id="11-verificar-si-un-numero-es-par">11. <strong>Verificar si un número es par</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que determine si un número es par.</li>
+<li><strong>Tipo de función</strong>: Declaración de función</li>
+<li><strong>Ejemplo</strong>: <code>esPar(4)</code> → <code>true</code></li>
+</ul>
+<h3 id="12-multiplicar-elementos-de-un-arreglo">12. <strong>Multiplicar elementos de un arreglo</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que multiplique todos los números de un arreglo.</li>
+<li><strong>Tipo de función</strong>: Función de orden superior</li>
+<li><strong>Ejemplo</strong>: <code>multiplicarArreglo([2, 3, 4])</code> → <code>24</code></li>
+</ul>
+<h3 id="13-reemplazar-espacios-por-guiones">13. <strong>Reemplazar espacios por guiones</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que reemplace los espacios en una cadena por guiones.</li>
+<li><strong>Tipo de función</strong>: Expresión de función</li>
+<li><strong>Ejemplo</strong>: <code>reemplazarEspacios("Hola Mundo")</code> → <code>Hola-Mundo</code></li>
+</ul>
+<h3 id="14-generar-un-id-unico">14. <strong>Generar un ID único</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que genere un ID único basado en un contador interno.</li>
+<li><strong>Tipo de función</strong>: IIFE con closure</li>
+<li><strong>Ejemplo</strong>: <code>generarId()</code> → <code>1</code>, <code>generarId()</code> → <code>2</code></li>
+</ul>
+<h3 id="15-invertir-una-cadena">15. <strong>Invertir una cadena</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que invierta una cadena de texto.</li>
+<li><strong>Tipo de función</strong>: Función recursiva</li>
+<li><strong>Ejemplo</strong>: <code>invertir("hola")</code> → <code>aloh</code></li>
+</ul>
+<h3 id="16-sumar-argumentos-variables">16. <strong>Sumar argumentos variables</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que sume un número variable de argumentos.</li>
+<li><strong>Tipo de función</strong>: Función flecha con parámetro rest</li>
+<li><strong>Ejemplo</strong>: <code>sumar(1, 2, 3, 4)</code> → <code>10</code></li>
+</ul>
+<h3 id="17-ejecutar-operacion-personalizada">17. <strong>Ejecutar operación personalizada</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que reciba dos números y una función callback para realizar una operación.</li>
+<li><strong>Tipo de función</strong>: Función de orden superior</li>
+<li><strong>Ejemplo</strong>: <code>operacion(5, 3, (a, b) =&gt; a * b)</code> → <code>15</code></li>
+</ul>
+<h3 id="18-validar-correo-electronico">18. <strong>Validar correo electrónico</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que valide si una cadena es un correo electrónico básico (contiene @ y .com).</li>
+<li><strong>Tipo de función</strong>: Declaración de función</li>
+<li><strong>Ejemplo</strong>: <code>esCorreo("test@example.com")</code> → <code>true</code></li>
+</ul>
+<h3 id="19-retrasar-ejecucion-de-un-mensaje">19. <strong>Retrasar ejecución de un mensaje</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que imprima un mensaje después de un tiempo definido por el usuario.</li>
+<li><strong>Tipo de función</strong>: Función anónima con <code>setTimeout</code></li>
+<li><strong>Ejemplo</strong>: <code>retrasarMensaje("Hola", 2000)</code> → Imprime "Hola" tras 2 segundos.</li>
+</ul>
+<h3 id="20-calcular-promedio-de-un-arreglo">20. <strong>Calcular promedio de un arreglo</strong></h3>
+<ul>
+<li><strong>Tarea</strong>: Crea una función que calcule el promedio de un arreglo de números.</li>
+<li><strong>Tipo de función</strong>: Función flecha</li>
+<li><strong>Ejemplo</strong>: <code>promedio([10, 20, 30])</code> → <code>20</code></li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2025 &copy; by JFVG
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs.sticky", "navigation.tabs", "navigation.top", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
