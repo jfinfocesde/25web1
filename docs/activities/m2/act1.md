@@ -2,8 +2,6 @@
 
 ## Estructuras de Datos en JavaScript (Arrays y Objetos)
 
-**Repositorio GitHub** → `https://github.com/tu-usuario/estructuras-datos-js`
-
 ---
 
 ## 📦 Instrucciones rápidas
