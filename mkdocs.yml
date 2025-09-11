@@ -71,7 +71,7 @@ nav:
       - content/p7.md
       - content/p8.md
       - content/p9.md
-      # - content/p10.md
+      - content/p10.md
       # - content/p11.md
       # - content/p12.md
       # - content/p13.md
@@ -94,8 +94,12 @@ nav:
       - tutorials/p1.md   
       - tutorials/p2.md   
       - tutorials/p3.md   
+      - tutorials/p4.md   
+      - tutorials/p5.md   
+      - tutorials/p6.md   
   - Proyecto Integrador:      
       - pi/p1.md   
+  
      
       
      
