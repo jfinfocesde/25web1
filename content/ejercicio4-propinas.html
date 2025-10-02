@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4: Calculadora de Propinas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 15px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .content {
+            padding: 40px;
+        }
+        .form-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+            transition: border-color 0.3s;
+        }
+        .form-section:focus-within {
+            border-color: #007bff;
+        }
+        .form-section h3 {
+            margin: 0 0 25px 0;
+            color: #495057;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .input-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+            font-size: 14px;
+        }
+        .input-group input, .input-group select {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background: white;
+        }
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+        }
+        .propina-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .propina-btn {
+            padding: 12px;
+            border: 2px solid #007bff;
+            background: white;
+            color: #007bff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .propina-btn:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .propina-btn.activo {
+            background: #007bff;
+            color: white;
+        }
+        .personas-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .personas-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .personas-btn:hover {
+            background: #218838;
+            transform: scale(1.1);
+        }
+        .personas-display {
+            background: white;
+            border: 2px solid #28a745;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #28a745;
+            min-width: 60px;
+            text-align: center;
+        }
+        .botones {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 140px;
+        }
+        .btn-calcular {
+            background: #28a745;
+            color: white;
+        }
+        .btn-calcular:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-limpiar {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-limpiar:hover {
+            background: #c82333;
+        }
+        .resultado {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        .resultado h3 {
+            margin: 0 0 20px 0;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .resultado-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .resultado-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .resultado-item .label {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        .resultado-item .valor {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .error {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .historial {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        .historial h3 {
+            margin: 0 0 20px 0;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .historial-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #007bff;
+            font-size: 14px;
+        }
+        .historial-vacio {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+            .propina-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💰 Calculadora de Propinas</h1>
+            <p>Calcula propinas y divide cuentas fácilmente</p>
+        </div>
+        
+        <div class="content">
+            <!-- Información de la cuenta -->
+            <div class="form-section">
+                <h3>🧾 Información de la Cuenta</h3>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="total-cuenta">Total de la Cuenta ($)</label>
+                        <input type="number" id="total-cuenta" placeholder="0.00" step="0.01" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="calidad-servicio">Calidad del Servicio</label>
+                        <select id="calidad-servicio">
+                            <option value="">Seleccionar...</option>
+                            <option value="10">Malo (10%)</option>
+                            <option value="15">Regular (15%)</option>
+                            <option value="18">Bueno (18%)</option>
+                            <option value="20">Excelente (20%)</option>
+                            <option value="25">Excepcional (25%)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="input-group full-width">
+                    <label>Porcentaje de Propina Personalizado</label>
+                    <div class="propina-buttons">
+                        <button class="propina-btn" onclick="seleccionarPropina(10)">10%</button>
+                        <button class="propina-btn" onclick="seleccionarPropina(15)">15%</button>
+                        <button class="propina-btn" onclick="seleccionarPropina(18)">18%</button>
+                        <button class="propina-btn" onclick="seleccionarPropina(20)">20%</button>
+                        <button class="propina-btn" onclick="seleccionarPropina(25)">25%</button>
+                        <input type="number" id="propina-custom" placeholder="%" min="0" max="100" 
+                               style="max-width: 80px; text-align: center;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- División entre personas -->
+            <div class="form-section">
+                <h3>👥 División entre Personas</h3>
+                <div class="personas-control">
+                    <button class="personas-btn" onclick="cambiarPersonas(-1)">-</button>
+                    <div class="personas-display" id="num-personas">1</div>
+                    <button class="personas-btn" onclick="cambiarPersonas(1)">+</button>
+                    <span style="margin-left: 15px; color: #6c757d;">persona(s)</span>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="botones">
+                <button class="btn btn-calcular" onclick="calcularPropina()">💰 Calcular</button>
+                <button class="btn btn-limpiar" onclick="limpiarFormulario()">🗑️ Limpiar</button>
+            </div>
+
+            <!-- Resultado -->
+            <div id="resultado-container" style="display: none;">
+                <div class="resultado">
+                    <h3>📊 Resumen del Cálculo</h3>
+                    <div class="resultado-grid">
+                        <div class="resultado-item">
+                            <div class="label">Subtotal</div>
+                            <div class="valor" id="resultado-subtotal">$0.00</div>
+                        </div>
+                        <div class="resultado-item">
+                            <div class="label">Propina</div>
+                            <div class="valor" id="resultado-propina">$0.00</div>
+                        </div>
+                        <div class="resultado-item">
+                            <div class="label">Total</div>
+                            <div class="valor" id="resultado-total">$0.00</div>
+                        </div>
+                        <div class="resultado-item">
+                            <div class="label">Por Persona</div>
+                            <div class="valor" id="resultado-por-persona">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error -->
+            <div id="error-container" style="display: none;">
+                <div class="error">
+                    <span id="error-mensaje">❌ Error en el cálculo</span>
+                </div>
+            </div>
+
+            <!-- Historial -->
+            <div class="historial">
+                <h3>📋 Historial de Cálculos</h3>
+                <div id="historial-lista">
+                    <div class="historial-vacio">No hay cálculos realizados aún</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let propinaSeleccionada = 18; // Propina por defecto
+        let numPersonas = 1;
+        let historial = [];
+
+        function seleccionarPropina(porcentaje) {
+            // Remover clase activo de todos los botones
+            document.querySelectorAll('.propina-btn').forEach(btn => {
+                btn.classList.remove('activo');
+            });
+            
+            // Activar botón seleccionado
+            event.target.classList.add('activo');
+            
+            // Actualizar propina seleccionada
+            propinaSeleccionada = porcentaje;
+            
+            // Limpiar input personalizado
+            document.getElementById('propina-custom').value = '';
+            
+            // Actualizar select de calidad
+            document.getElementById('calidad-servicio').value = porcentaje;
+        }
+
+        function cambiarPersonas(cambio) {
+            numPersonas = Math.max(1, numPersonas + cambio);
+            document.getElementById('num-personas').textContent = numPersonas;
+        }
+
+        function calcularPropina() {
+            const totalCuenta = parseFloat(document.getElementById('total-cuenta').value);
+            const propinaCustom = parseFloat(document.getElementById('propina-custom').value);
+            
+            // Validaciones
+            if (isNaN(totalCuenta) || totalCuenta <= 0) {
+                mostrarError('Por favor, ingresa un total de cuenta válido mayor a $0');
+                return;
+            }
+
+            // Determinar porcentaje de propina
+            let porcentajePropina = propinaSeleccionada;
+            if (!isNaN(propinaCustom) && propinaCustom >= 0 && propinaCustom <= 100) {
+                porcentajePropina = propinaCustom;
+            }
+
+            if (porcentajePropina <= 0) {
+                mostrarError('Por favor, selecciona un porcentaje de propina válido');
+                return;
+            }
+
+            // Cálculos
+            const propina = totalCuenta * (porcentajePropina / 100);
+            const total = totalCuenta + propina;
+            const porPersona = total / numPersonas;
+
+            // Mostrar resultados
+            mostrarResultado(totalCuenta, propina, total, porPersona, porcentajePropina);
+            
+            // Agregar al historial
+            agregarAlHistorial(totalCuenta, propina, total, porPersona, porcentajePropina, numPersonas);
+        }
+
+        function mostrarResultado(subtotal, propina, total, porPersona, porcentaje) {
+            document.getElementById('resultado-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('resultado-propina').textContent = `$${propina.toFixed(2)} (${porcentaje}%)`;
+            document.getElementById('resultado-total').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('resultado-por-persona').textContent = `$${porPersona.toFixed(2)}`;
+            
+            document.getElementById('resultado-container').style.display = 'block';
+            document.getElementById('error-container').style.display = 'none';
+        }
+
+        function mostrarError(mensaje) {
+            document.getElementById('error-mensaje').textContent = `❌ ${mensaje}`;
+            document.getElementById('error-container').style.display = 'block';
+            document.getElementById('resultado-container').style.display = 'none';
+        }
+
+        function agregarAlHistorial(subtotal, propina, total, porPersona, porcentaje, personas) {
+            const fecha = new Date().toLocaleString();
+            const calculo = {
+                fecha,
+                subtotal,
+                propina,
+                total,
+                porPersona,
+                porcentaje,
+                personas
+            };
+            
+            historial.unshift(calculo); // Agregar al inicio
+            
+            // Mantener solo los últimos 10 cálculos
+            if (historial.length > 10) {
+                historial = historial.slice(0, 10);
+            }
+            
+            actualizarHistorial();
+        }
+
+        function actualizarHistorial() {
+            const lista = document.getElementById('historial-lista');
+            
+            if (historial.length === 0) {
+                lista.innerHTML = '<div class="historial-vacio">No hay cálculos realizados aún</div>';
+                return;
+            }
+            
+            lista.innerHTML = historial.map(item => `
+                <div class="historial-item">
+                    <strong>${item.fecha}</strong><br>
+                    Cuenta: $${item.subtotal.toFixed(2)} + Propina: $${item.propina.toFixed(2)} (${item.porcentaje}%) = 
+                    <strong>$${item.total.toFixed(2)}</strong>
+                    ${item.personas > 1 ? ` | ${item.personas} personas: $${item.porPersona.toFixed(2)} c/u` : ''}
+                </div>
+            `).join('');
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('total-cuenta').value = '';
+            document.getElementById('propina-custom').value = '';
+            document.getElementById('calidad-servicio').value = '';
+            
+            // Resetear propina seleccionada
+            document.querySelectorAll('.propina-btn').forEach(btn => {
+                btn.classList.remove('activo');
+            });
+            
+            // Seleccionar 18% por defecto
+            propinaSeleccionada = 18;
+            numPersonas = 1;
+            document.getElementById('num-personas').textContent = numPersonas;
+            
+            // Ocultar resultados y errores
+            document.getElementById('resultado-container').style.display = 'none';
+            document.getElementById('error-container').style.display = 'none';
+        }
+
+        // Event listeners
+        document.getElementById('calidad-servicio').addEventListener('change', function() {
+            const valor = parseInt(this.value);
+            if (!isNaN(valor)) {
+                seleccionarPropina(valor);
+                // Simular click en el botón correspondiente
+                document.querySelectorAll('.propina-btn').forEach(btn => {
+                    if (btn.textContent === `${valor}%`) {
+                        btn.classList.add('activo');
+                    } else {
+                        btn.classList.remove('activo');
+                    }
+                });
+            }
+        });
+
+        document.getElementById('propina-custom').addEventListener('input', function() {
+            const valor = parseFloat(this.value);
+            if (!isNaN(valor) && valor >= 0 && valor <= 100) {
+                // Remover clase activo de botones predefinidos
+                document.querySelectorAll('.propina-btn').forEach(btn => {
+                    btn.classList.remove('activo');
+                });
+                propinaSeleccionada = valor;
+                document.getElementById('calidad-servicio').value = '';
+            }
+        });
+
+        // Calcular automáticamente al cambiar valores
+        document.getElementById('total-cuenta').addEventListener('input', function() {
+            if (this.value && propinaSeleccionada > 0) {
+                setTimeout(calcularPropina, 500); // Delay para evitar cálculos excesivos
+            }
+        });
+
+        // Soporte para Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calcularPropina();
+            }
+        });
+
+        // Inicializar con 18% seleccionado
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.propina-btn').forEach(btn => {
+                if (btn.textContent === '18%') {
+                    btn.classList.add('activo');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
