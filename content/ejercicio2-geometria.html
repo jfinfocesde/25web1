@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2: Calculadora de Geometría</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .selector-figura {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .figura-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .figura-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        .figura-btn.activo {
+            background: #2196F3;
+            transform: scale(1.1);
+        }
+        .calculadora-figura {
+            display: none;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #4CAF50;
+        }
+        .calculadora-figura.activa {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .grupo-input {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .botones {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        button {
+            flex: 1;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        .btn-calcular {
+            background: #2196F3;
+            color: white;
+        }
+        .btn-calcular:hover {
+            background: #1976D2;
+            transform: translateY(-2px);
+        }
+        .btn-limpiar {
+            background: #ff5722;
+            color: white;
+        }
+        .btn-limpiar:hover {
+            background: #d84315;
+        }
+        .resultado {
+            background: #e8f5e8;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .error {
+            background: #ffebee;
+            border-color: #f44336;
+            color: #c62828;
+        }
+        .formula {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #e65100;
+        }
+        .visual {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 Calculadora de Geometría</h1>
+        
+        <div class="selector-figura">
+            <button class="figura-btn activo" onclick="seleccionarFigura('cuadrado')">🟦 Cuadrado</button>
+            <button class="figura-btn" onclick="seleccionarFigura('rectangulo')">▭ Rectángulo</button>
+            <button class="figura-btn" onclick="seleccionarFigura('triangulo')">🔺 Triángulo</button>
+            <button class="figura-btn" onclick="seleccionarFigura('circulo')">⭕ Círculo</button>
+        </div>
+
+        <!-- Calculadora Cuadrado -->
+        <div id="calc-cuadrado" class="calculadora-figura activa">
+            <h3>🟦 Cuadrado</h3>
+            <div class="visual">⬜</div>
+            <div class="formula">Área = lado² | Perímetro = 4 × lado</div>
+            
+            <div class="grupo-input">
+                <label for="lado-cuadrado">Lado del cuadrado (cm):</label>
+                <input type="number" id="lado-cuadrado" placeholder="Ingresa el lado" step="any" min="0">
+            </div>
+            
+            <div class="botones">
+                <button class="btn-calcular" onclick="calcularCuadrado()">📏 Calcular</button>
+                <button class="btn-limpiar" onclick="limpiarCuadrado()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-cuadrado" class="resultado">
+                Ingresa el lado del cuadrado para calcular
+            </div>
+        </div>
+
+        <!-- Calculadora Rectángulo -->
+        <div id="calc-rectangulo" class="calculadora-figura">
+            <h3>▭ Rectángulo</h3>
+            <div class="visual">▭</div>
+            <div class="formula">Área = base × altura | Perímetro = 2 × (base + altura)</div>
+            
+            <div class="grupo-input">
+                <label for="base-rectangulo">Base del rectángulo (cm):</label>
+                <input type="number" id="base-rectangulo" placeholder="Ingresa la base" step="any" min="0">
+            </div>
+            
+            <div class="grupo-input">
+                <label for="altura-rectangulo">Altura del rectángulo (cm):</label>
+                <input type="number" id="altura-rectangulo" placeholder="Ingresa la altura" step="any" min="0">
+            </div>
+            
+            <div class="botones">
+                <button class="btn-calcular" onclick="calcularRectangulo()">📏 Calcular</button>
+                <button class="btn-limpiar" onclick="limpiarRectangulo()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-rectangulo" class="resultado">
+                Ingresa la base y altura del rectángulo para calcular
+            </div>
+        </div>
+
+        <!-- Calculadora Triángulo -->
+        <div id="calc-triangulo" class="calculadora-figura">
+            <h3>🔺 Triángulo</h3>
+            <div class="visual">🔺</div>
+            <div class="formula">Área = (base × altura) ÷ 2 | Perímetro = lado1 + lado2 + lado3</div>
+            
+            <div class="grupo-input">
+                <label for="base-triangulo">Base del triángulo (cm):</label>
+                <input type="number" id="base-triangulo" placeholder="Ingresa la base" step="any" min="0">
+            </div>
+            
+            <div class="grupo-input">
+                <label for="altura-triangulo">Altura del triángulo (cm):</label>
+                <input type="number" id="altura-triangulo" placeholder="Ingresa la altura" step="any" min="0">
+            </div>
+            
+            <div class="grupo-input">
+                <label for="lado1-triangulo">Lado 1 (cm):</label>
+                <input type="number" id="lado1-triangulo" placeholder="Primer lado" step="any" min="0">
+            </div>
+            
+            <div class="grupo-input">
+                <label for="lado2-triangulo">Lado 2 (cm):</label>
+                <input type="number" id="lado2-triangulo" placeholder="Segundo lado" step="any" min="0">
+            </div>
+            
+            <div class="grupo-input">
+                <label for="lado3-triangulo">Lado 3 (cm):</label>
+                <input type="number" id="lado3-triangulo" placeholder="Tercer lado" step="any" min="0">
+            </div>
+            
+            <div class="botones">
+                <button class="btn-calcular" onclick="calcularTriangulo()">📏 Calcular</button>
+                <button class="btn-limpiar" onclick="limpiarTriangulo()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-triangulo" class="resultado">
+                Ingresa los datos del triángulo para calcular
+            </div>
+        </div>
+
+        <!-- Calculadora Círculo -->
+        <div id="calc-circulo" class="calculadora-figura">
+            <h3>⭕ Círculo</h3>
+            <div class="visual">⭕</div>
+            <div class="formula">Área = π × radio² | Perímetro = 2 × π × radio</div>
+            
+            <div class="grupo-input">
+                <label for="radio-circulo">Radio del círculo (cm):</label>
+                <input type="number" id="radio-circulo" placeholder="Ingresa el radio" step="any" min="0">
+            </div>
+            
+            <div class="botones">
+                <button class="btn-calcular" onclick="calcularCirculo()">📏 Calcular</button>
+                <button class="btn-limpiar" onclick="limpiarCirculo()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-circulo" class="resultado">
+                Ingresa el radio del círculo para calcular
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function seleccionarFigura(figura) {
+            // Ocultar todas las calculadoras
+            const calculadoras = document.querySelectorAll('.calculadora-figura');
+            calculadoras.forEach(calc => calc.classList.remove('activa'));
+            
+            // Remover clase activo de todos los botones
+            const botones = document.querySelectorAll('.figura-btn');
+            botones.forEach(btn => btn.classList.remove('activo'));
+            
+            // Mostrar calculadora seleccionada
+            document.getElementById(`calc-${figura}`).classList.add('activa');
+            
+            // Activar botón seleccionado
+            event.target.classList.add('activo');
+        }
+        
+        function mostrarResultado(elementoId, area, perimetro, unidad = 'cm') {
+            const elemento = document.getElementById(elementoId);
+            elemento.className = 'resultado';
+            elemento.innerHTML = `
+                <div>
+                    <div><strong>📏 Área:</strong> ${area} ${unidad}²</div>
+                    <div><strong>📐 Perímetro:</strong> ${perimetro} ${unidad}</div>
+                </div>
+            `;
+        }
+        
+        function mostrarError(elementoId, mensaje) {
+            const elemento = document.getElementById(elementoId);
+            elemento.className = 'resultado error';
+            elemento.innerHTML = `❌ ${mensaje}`;
+        }
+        
+        // Calculadora Cuadrado
+        function calcularCuadrado() {
+            const lado = parseFloat(document.getElementById('lado-cuadrado').value);
+            
+            if (isNaN(lado) || lado <= 0) {
+                mostrarError('resultado-cuadrado', 'Por favor, ingresa un lado válido mayor que 0');
+                return;
+            }
+            
+            const area = (lado * lado).toFixed(2);
+            const perimetro = (4 * lado).toFixed(2);
+            
+            mostrarResultado('resultado-cuadrado', area, perimetro);
+        }
+        
+        function limpiarCuadrado() {
+            document.getElementById('lado-cuadrado').value = '';
+            document.getElementById('resultado-cuadrado').className = 'resultado';
+            document.getElementById('resultado-cuadrado').textContent = 'Ingresa el lado del cuadrado para calcular';
+        }
+        
+        // Calculadora Rectángulo
+        function calcularRectangulo() {
+            const base = parseFloat(document.getElementById('base-rectangulo').value);
+            const altura = parseFloat(document.getElementById('altura-rectangulo').value);
+            
+            if (isNaN(base) || isNaN(altura) || base <= 0 || altura <= 0) {
+                mostrarError('resultado-rectangulo', 'Por favor, ingresa base y altura válidas mayores que 0');
+                return;
+            }
+            
+            const area = (base * altura).toFixed(2);
+            const perimetro = (2 * (base + altura)).toFixed(2);
+            
+            mostrarResultado('resultado-rectangulo', area, perimetro);
+        }
+        
+        function limpiarRectangulo() {
+            document.getElementById('base-rectangulo').value = '';
+            document.getElementById('altura-rectangulo').value = '';
+            document.getElementById('resultado-rectangulo').className = 'resultado';
+            document.getElementById('resultado-rectangulo').textContent = 'Ingresa la base y altura del rectángulo para calcular';
+        }
+        
+        // Calculadora Triángulo
+        function calcularTriangulo() {
+            const base = parseFloat(document.getElementById('base-triangulo').value);
+            const altura = parseFloat(document.getElementById('altura-triangulo').value);
+            const lado1 = parseFloat(document.getElementById('lado1-triangulo').value);
+            const lado2 = parseFloat(document.getElementById('lado2-triangulo').value);
+            const lado3 = parseFloat(document.getElementById('lado3-triangulo').value);
+            
+            if (isNaN(base) || isNaN(altura) || base <= 0 || altura <= 0) {
+                mostrarError('resultado-triangulo', 'Por favor, ingresa base y altura válidas para calcular el área');
+                return;
+            }
+            
+            if (isNaN(lado1) || isNaN(lado2) || isNaN(lado3) || lado1 <= 0 || lado2 <= 0 || lado3 <= 0) {
+                mostrarError('resultado-triangulo', 'Por favor, ingresa los tres lados válidos para calcular el perímetro');
+                return;
+            }
+            
+            const area = ((base * altura) / 2).toFixed(2);
+            const perimetro = (lado1 + lado2 + lado3).toFixed(2);
+            
+            mostrarResultado('resultado-triangulo', area, perimetro);
+        }
+        
+        function limpiarTriangulo() {
+            document.getElementById('base-triangulo').value = '';
+            document.getElementById('altura-triangulo').value = '';
+            document.getElementById('lado1-triangulo').value = '';
+            document.getElementById('lado2-triangulo').value = '';
+            document.getElementById('lado3-triangulo').value = '';
+            document.getElementById('resultado-triangulo').className = 'resultado';
+            document.getElementById('resultado-triangulo').textContent = 'Ingresa los datos del triángulo para calcular';
+        }
+        
+        // Calculadora Círculo
+        function calcularCirculo() {
+            const radio = parseFloat(document.getElementById('radio-circulo').value);
+            
+            if (isNaN(radio) || radio <= 0) {
+                mostrarError('resultado-circulo', 'Por favor, ingresa un radio válido mayor que 0');
+                return;
+            }
+            
+            const area = (Math.PI * radio * radio).toFixed(2);
+            const perimetro = (2 * Math.PI * radio).toFixed(2);
+            
+            mostrarResultado('resultado-circulo', area, perimetro);
+        }
+        
+        function limpiarCirculo() {
+            document.getElementById('radio-circulo').value = '';
+            document.getElementById('resultado-circulo').className = 'resultado';
+            document.getElementById('resultado-circulo').textContent = 'Ingresa el radio del círculo para calcular';
+        }
+        
+        // Permitir cálculo con Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const figuraActiva = document.querySelector('.calculadora-figura.activa');
+                if (figuraActiva) {
+                    const botonCalcular = figuraActiva.querySelector('.btn-calcular');
+                    if (botonCalcular) {
+                        botonCalcular.click();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

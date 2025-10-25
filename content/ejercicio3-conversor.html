@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3: Conversor de Unidades</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .tab {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6c757d;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .tab:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+        .tab.activo {
+            color: #007bff;
+            background: white;
+        }
+        .tab.activo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #007bff;
+        }
+        .conversor {
+            display: none;
+            padding: 40px;
+        }
+        .conversor.activo {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .conversor-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+            transition: border-color 0.3s;
+        }
+        .input-group:focus-within {
+            border-color: #007bff;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #495057;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            background: white;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .input-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+        }
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .intercambio {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+        .intercambio:hover {
+            background: #0056b3;
+            transform: rotate(180deg);
+        }
+        .botones {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        .btn-convertir {
+            background: #28a745;
+            color: white;
+        }
+        .btn-convertir:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        .btn-limpiar {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-limpiar:hover {
+            background: #c82333;
+        }
+        .resultado {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .error {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+        .formula {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #856404;
+            text-align: center;
+        }
+        .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Conversor de Unidades</h1>
+            <p>Convierte fácilmente entre diferentes unidades de medida</p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab activo" onclick="cambiarTab('temperatura')">🌡️ Temperatura</button>
+            <button class="tab" onclick="cambiarTab('peso')">⚖️ Peso</button>
+            <button class="tab" onclick="cambiarTab('longitud')">📏 Longitud</button>
+        </div>
+
+        <!-- Conversor de Temperatura -->
+        <div id="temperatura" class="conversor activo">
+            <div class="icon" style="text-align: center;">🌡️</div>
+            <div class="formula">°C = (°F - 32) × 5/9 | °F = (°C × 9/5) + 32 | K = °C + 273.15</div>
+            
+            <div class="conversor-grid">
+                <div class="input-group">
+                    <label>Desde:</label>
+                    <input type="number" id="temp-desde" placeholder="0" step="any">
+                    <select id="temp-unidad-desde">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </select>
+                </div>
+                
+                <button class="intercambio" onclick="intercambiarTemperatura()">⇄</button>
+                
+                <div class="input-group">
+                    <label>Hacia:</label>
+                    <input type="number" id="temp-hacia" placeholder="0" readonly>
+                    <select id="temp-unidad-hacia">
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="botones">
+                <button class="btn btn-convertir" onclick="convertirTemperatura()">🔄 Convertir</button>
+                <button class="btn btn-limpiar" onclick="limpiarTemperatura()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-temperatura" class="resultado">
+                Ingresa una temperatura para convertir
+            </div>
+        </div>
+
+        <!-- Conversor de Peso -->
+        <div id="peso" class="conversor">
+            <div class="icon" style="text-align: center;">⚖️</div>
+            <div class="formula">1 kg = 1000 g | 1 lb = 453.592 g | 1 oz = 28.3495 g</div>
+            
+            <div class="conversor-grid">
+                <div class="input-group">
+                    <label>Desde:</label>
+                    <input type="number" id="peso-desde" placeholder="0" step="any" min="0">
+                    <select id="peso-unidad-desde">
+                        <option value="kg">Kilogramos (kg)</option>
+                        <option value="g">Gramos (g)</option>
+                        <option value="lb">Libras (lb)</option>
+                        <option value="oz">Onzas (oz)</option>
+                        <option value="ton">Toneladas (ton)</option>
+                    </select>
+                </div>
+                
+                <button class="intercambio" onclick="intercambiarPeso()">⇄</button>
+                
+                <div class="input-group">
+                    <label>Hacia:</label>
+                    <input type="number" id="peso-hacia" placeholder="0" readonly>
+                    <select id="peso-unidad-hacia">
+                        <option value="g">Gramos (g)</option>
+                        <option value="kg">Kilogramos (kg)</option>
+                        <option value="lb">Libras (lb)</option>
+                        <option value="oz">Onzas (oz)</option>
+                        <option value="ton">Toneladas (ton)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="botones">
+                <button class="btn btn-convertir" onclick="convertirPeso()">⚖️ Convertir</button>
+                <button class="btn btn-limpiar" onclick="limpiarPeso()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-peso" class="resultado">
+                Ingresa un peso para convertir
+            </div>
+        </div>
+
+        <!-- Conversor de Longitud -->
+        <div id="longitud" class="conversor">
+            <div class="icon" style="text-align: center;">📏</div>
+            <div class="formula">1 m = 100 cm = 1000 mm | 1 ft = 12 in = 30.48 cm | 1 km = 1000 m</div>
+            
+            <div class="conversor-grid">
+                <div class="input-group">
+                    <label>Desde:</label>
+                    <input type="number" id="longitud-desde" placeholder="0" step="any" min="0">
+                    <select id="longitud-unidad-desde">
+                        <option value="m">Metros (m)</option>
+                        <option value="cm">Centímetros (cm)</option>
+                        <option value="mm">Milímetros (mm)</option>
+                        <option value="km">Kilómetros (km)</option>
+                        <option value="ft">Pies (ft)</option>
+                        <option value="in">Pulgadas (in)</option>
+                    </select>
+                </div>
+                
+                <button class="intercambio" onclick="intercambiarLongitud()">⇄</button>
+                
+                <div class="input-group">
+                    <label>Hacia:</label>
+                    <input type="number" id="longitud-hacia" placeholder="0" readonly>
+                    <select id="longitud-unidad-hacia">
+                        <option value="cm">Centímetros (cm)</option>
+                        <option value="m">Metros (m)</option>
+                        <option value="mm">Milímetros (mm)</option>
+                        <option value="km">Kilómetros (km)</option>
+                        <option value="ft">Pies (ft)</option>
+                        <option value="in">Pulgadas (in)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="botones">
+                <button class="btn btn-convertir" onclick="convertirLongitud()">📏 Convertir</button>
+                <button class="btn btn-limpiar" onclick="limpiarLongitud()">🗑️ Limpiar</button>
+            </div>
+            
+            <div id="resultado-longitud" class="resultado">
+                Ingresa una longitud para convertir
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cambiarTab(tipo) {
+            // Ocultar todos los conversores
+            const conversores = document.querySelectorAll('.conversor');
+            conversores.forEach(conv => conv.classList.remove('activo'));
+            
+            // Remover clase activo de todos los tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('activo'));
+            
+            // Mostrar conversor seleccionado
+            document.getElementById(tipo).classList.add('activo');
+            
+            // Activar tab seleccionado
+            event.target.classList.add('activo');
+        }
+        
+        function mostrarResultado(elementoId, valor, unidadDesde, unidadHacia, valorOriginal) {
+            const elemento = document.getElementById(elementoId);
+            elemento.className = 'resultado';
+            elemento.innerHTML = `
+                <div>
+                    <strong>${valorOriginal} ${unidadDesde} = ${valor} ${unidadHacia}</strong>
+                    <br><small>Conversión realizada correctamente</small>
+                </div>
+            `;
+        }
+        
+        function mostrarError(elementoId, mensaje) {
+            const elemento = document.getElementById(elementoId);
+            elemento.className = 'resultado error';
+            elemento.innerHTML = `❌ ${mensaje}`;
+        }
+        
+        // Conversores de Temperatura
+        function convertirTemperatura() {
+            const valor = parseFloat(document.getElementById('temp-desde').value);
+            const unidadDesde = document.getElementById('temp-unidad-desde').value;
+            const unidadHacia = document.getElementById('temp-unidad-hacia').value;
+            
+            if (isNaN(valor)) {
+                mostrarError('resultado-temperatura', 'Por favor, ingresa una temperatura válida');
+                return;
+            }
+            
+            if (unidadDesde === unidadHacia) {
+                mostrarError('resultado-temperatura', 'Selecciona unidades diferentes para convertir');
+                return;
+            }
+            
+            let celsius = valor;
+            
+            // Convertir a Celsius primero
+            if (unidadDesde === 'fahrenheit') {
+                celsius = (valor - 32) * 5/9;
+            } else if (unidadDesde === 'kelvin') {
+                celsius = valor - 273.15;
+            }
+            
+            // Convertir de Celsius a la unidad destino
+            let resultado;
+            if (unidadHacia === 'fahrenheit') {
+                resultado = (celsius * 9/5) + 32;
+            } else if (unidadHacia === 'kelvin') {
+                resultado = celsius + 273.15;
+            } else {
+                resultado = celsius;
+            }
+            
+            document.getElementById('temp-hacia').value = resultado.toFixed(2);
+            mostrarResultado('resultado-temperatura', resultado.toFixed(2), 
+                           getUnidadNombre(unidadDesde, 'temperatura'), 
+                           getUnidadNombre(unidadHacia, 'temperatura'), valor);
+        }
+        
+        function intercambiarTemperatura() {
+            const desde = document.getElementById('temp-unidad-desde');
+            const hacia = document.getElementById('temp-unidad-hacia');
+            const valorDesde = document.getElementById('temp-desde');
+            const valorHacia = document.getElementById('temp-hacia');
+            
+            [desde.value, hacia.value] = [hacia.value, desde.value];
+            valorDesde.value = valorHacia.value;
+            valorHacia.value = '';
+        }
+        
+        function limpiarTemperatura() {
+            document.getElementById('temp-desde').value = '';
+            document.getElementById('temp-hacia').value = '';
+            document.getElementById('resultado-temperatura').className = 'resultado';
+            document.getElementById('resultado-temperatura').textContent = 'Ingresa una temperatura para convertir';
+        }
+        
+        // Conversores de Peso
+        function convertirPeso() {
+            const valor = parseFloat(document.getElementById('peso-desde').value);
+            const unidadDesde = document.getElementById('peso-unidad-desde').value;
+            const unidadHacia = document.getElementById('peso-unidad-hacia').value;
+            
+            if (isNaN(valor) || valor < 0) {
+                mostrarError('resultado-peso', 'Por favor, ingresa un peso válido mayor o igual a 0');
+                return;
+            }
+            
+            if (unidadDesde === unidadHacia) {
+                mostrarError('resultado-peso', 'Selecciona unidades diferentes para convertir');
+                return;
+            }
+            
+            // Factores de conversión a gramos
+            const factores = {
+                'g': 1,
+                'kg': 1000,
+                'lb': 453.592,
+                'oz': 28.3495,
+                'ton': 1000000
+            };
+            
+            // Convertir a gramos primero, luego a la unidad destino
+            const gramos = valor * factores[unidadDesde];
+            const resultado = gramos / factores[unidadHacia];
+            
+            document.getElementById('peso-hacia').value = resultado.toFixed(4);
+            mostrarResultado('resultado-peso', resultado.toFixed(4), 
+                           getUnidadNombre(unidadDesde, 'peso'), 
+                           getUnidadNombre(unidadHacia, 'peso'), valor);
+        }
+        
+        function intercambiarPeso() {
+            const desde = document.getElementById('peso-unidad-desde');
+            const hacia = document.getElementById('peso-unidad-hacia');
+            const valorDesde = document.getElementById('peso-desde');
+            const valorHacia = document.getElementById('peso-hacia');
+            
+            [desde.value, hacia.value] = [hacia.value, desde.value];
+            valorDesde.value = valorHacia.value;
+            valorHacia.value = '';
+        }
+        
+        function limpiarPeso() {
+            document.getElementById('peso-desde').value = '';
+            document.getElementById('peso-hacia').value = '';
+            document.getElementById('resultado-peso').className = 'resultado';
+            document.getElementById('resultado-peso').textContent = 'Ingresa un peso para convertir';
+        }
+        
+        // Conversores de Longitud
+        function convertirLongitud() {
+            const valor = parseFloat(document.getElementById('longitud-desde').value);
+            const unidadDesde = document.getElementById('longitud-unidad-desde').value;
+            const unidadHacia = document.getElementById('longitud-unidad-hacia').value;
+            
+            if (isNaN(valor) || valor < 0) {
+                mostrarError('resultado-longitud', 'Por favor, ingresa una longitud válida mayor o igual a 0');
+                return;
+            }
+            
+            if (unidadDesde === unidadHacia) {
+                mostrarError('resultado-longitud', 'Selecciona unidades diferentes para convertir');
+                return;
+            }
+            
+            // Factores de conversión a metros
+            const factores = {
+                'm': 1,
+                'cm': 0.01,
+                'mm': 0.001,
+                'km': 1000,
+                'ft': 0.3048,
+                'in': 0.0254
+            };
+            
+            // Convertir a metros primero, luego a la unidad destino
+            const metros = valor * factores[unidadDesde];
+            const resultado = metros / factores[unidadHacia];
+            
+            document.getElementById('longitud-hacia').value = resultado.toFixed(6);
+            mostrarResultado('resultado-longitud', resultado.toFixed(6), 
+                           getUnidadNombre(unidadDesde, 'longitud'), 
+                           getUnidadNombre(unidadHacia, 'longitud'), valor);
+        }
+        
+        function intercambiarLongitud() {
+            const desde = document.getElementById('longitud-unidad-desde');
+            const hacia = document.getElementById('longitud-unidad-hacia');
+            const valorDesde = document.getElementById('longitud-desde');
+            const valorHacia = document.getElementById('longitud-hacia');
+            
+            [desde.value, hacia.value] = [hacia.value, desde.value];
+            valorDesde.value = valorHacia.value;
+            valorHacia.value = '';
+        }
+        
+        function limpiarLongitud() {
+            document.getElementById('longitud-desde').value = '';
+            document.getElementById('longitud-hacia').value = '';
+            document.getElementById('resultado-longitud').className = 'resultado';
+            document.getElementById('resultado-longitud').textContent = 'Ingresa una longitud para convertir';
+        }
+        
+        // Función auxiliar para obtener nombres de unidades
+        function getUnidadNombre(unidad, tipo) {
+            const nombres = {
+                temperatura: {
+                    'celsius': '°C',
+                    'fahrenheit': '°F',
+                    'kelvin': 'K'
+                },
+                peso: {
+                    'g': 'g',
+                    'kg': 'kg',
+                    'lb': 'lb',
+                    'oz': 'oz',
+                    'ton': 'ton'
+                },
+                longitud: {
+                    'm': 'm',
+                    'cm': 'cm',
+                    'mm': 'mm',
+                    'km': 'km',
+                    'ft': 'ft',
+                    'in': 'in'
+                }
+            };
+            
+            return nombres[tipo][unidad] || unidad;
+        }
+        
+        // Conversión automática al escribir
+        document.getElementById('temp-desde').addEventListener('input', convertirTemperatura);
+        document.getElementById('peso-desde').addEventListener('input', convertirPeso);
+        document.getElementById('longitud-desde').addEventListener('input', convertirLongitud);
+        
+        // Conversión automática al cambiar unidades
+        document.getElementById('temp-unidad-desde').addEventListener('change', convertirTemperatura);
+        document.getElementById('temp-unidad-hacia').addEventListener('change', convertirTemperatura);
+        document.getElementById('peso-unidad-desde').addEventListener('change', convertirPeso);
+        document.getElementById('peso-unidad-hacia').addEventListener('change', convertirPeso);
+        document.getElementById('longitud-unidad-desde').addEventListener('change', convertirLongitud);
+        document.getElementById('longitud-unidad-hacia').addEventListener('change', convertirLongitud);
+    </script>
+</body>
+</html>
